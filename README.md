@@ -4,7 +4,8 @@
 
 <h3>Description</h3>
 <p>
-This is a JavaScript code to display the real-time locations of buses in a route on a map using the Mapbox API. The code first loads a Mapbox map with a set style and center point. <br>
+This webage is run by a Javascript code to display the
+real-time location of buses as icons on a map using Mapbox API.the real-time locations of buses in a route on a map using the Mapbox API. The code first loads a Mapbox map with a set style and center point. <br>
 Then, the addMarkers function retrieves the bus data from the MBTA API and adds/updates markers on the map for each bus. <br>
 The bus data includes the bus id, latitude, and longitude. A marker icon color is determined based on the bus's direction. <br>
 The addMarkers function is executed every 15 seconds to update the bus locations.<br>
