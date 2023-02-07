@@ -1,25 +1,29 @@
 <!-- @format -->
 
 # Real-Time-Bus-Tracker
-Visit site: 
+Visit site: https://selarabi.github.io/Real-Time-Bus-Tracker/ 
 
 ## Description ##
 <p>
 This webage is run by a Javascript code to display the
-real-time location of buses as icons on a map using Mapbox API.the real-time locations of buses in a route on a map using the Mapbox API. The code first loads a Mapbox map with a set style and center point. <br>
+real-time location of buses as icons on a map using Mapbox API.the real-time locations of buses in a route on a map using the Mapbox API. 
+
+## How to Run ##
+      
+      The code in the js file (Real-Time-Bus-Tracker/mapanimation.js / ) first loads a Mapbox map with a set style and center point. <br>
 Then, the addMarkers function retrieves the bus data from the MBTA API and adds/updates markers on the map for each bus. <br>
 The bus data includes the bus id, latitude, and longitude. A marker icon color is determined based on the bus's direction. <br>
 The addMarkers function is executed every 15 seconds to update the bus locations.<br>
 The code uses the fetch API for data retrieval and the Mapbox API for map and marker manipulation.
 </p>
 
-## How to Run ##
 <p>
 This website was build using Mapbox API which will require API key in order to get access to use map.
-The navigation bar has 3 elements (projects,Project sites and github repositories) which allow to navigate to other pages which include projects and their repositories and their sites.<br>
-This website was built using bootsrap styling with other defined styling included in style.css file. 
+The navigation bar has 2 elements (Portfolio and Project sites ) which allow to navigate and explore other projects  their repositories and their sites.<br>
+This website was built using bootsrap styling with other defined styling included in style.css file.
+      
 </p>
-Bootstrap CSS and JS are used using the following CDN links references without the need for downloading the files and include them in the project files. 
+Bootstrap CSS and JS files are accessible using the following CDN links references without the need for downloading the files and include them in the project files. 
 <p>
 Bootstrap CSS link 
       
