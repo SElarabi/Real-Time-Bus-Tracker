@@ -52,7 +52,8 @@ Bootstrap CSS link
 
 ## Roadmap of future improvements ##
 This website is in progress, originaly was a set with google API but the API Key was expired, free key with Mapbox was an alternative to be used, the code is still to be adjusted and modified to display the icon ontop of the map. 
-At this point the data can be seen in console log.
+At this point with map displayed on webpage data can be seen only at the console log.
+Future improvement would include:
 - Adjust code to display animated icons.
 
 
