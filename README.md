@@ -15,6 +15,7 @@ The code uses the fetch API for data retrieval and the Mapbox API for map and ma
 
 ## How to Run ##
 <p>
+This website was build using Mapbox API which will require API key in order to get access to use map.
 The navigation bar has 3 elements (projects,Project sites and github repositories) which allow to navigate to other pages which include projects and their repositories and their sites.<br>
 This website was built using bootsrap styling with other defined styling included in style.css file. 
 </p>
