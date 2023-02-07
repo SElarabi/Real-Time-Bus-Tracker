@@ -10,7 +10,7 @@ real-time location of buses as icons on a map using Mapbox API.the real-time loc
 
 ## How to Run ##
       
-      The code in the js file (Real-Time-Bus-Tracker/mapanimation.js / ) first loads a Mapbox map with a set style and center point. <br>
+The code in the js file mapanimation.js  first loads a Mapbox map with a set style and center point. <br>
 Then, the addMarkers function retrieves the bus data from the MBTA API and adds/updates markers on the map for each bus. <br>
 The bus data includes the bus id, latitude, and longitude. A marker icon color is determined based on the bus's direction. <br>
 The addMarkers function is executed every 15 seconds to update the bus locations.<br>
@@ -51,7 +51,12 @@ Bootstrap CSS link
   </p>
 
 ## Roadmap of future improvements ##
- ## MIT License ##
+This website is in progress, originaly was a set with google API but the API Key was expired, free key with Mapbox was an alternative to be used, the code is still to be adjusted and modified to display the icon ontop of the map. 
+At this point the data can be seen in console log.
+- Adjust code to display animated icons.
+
+
+## MIT License ##
 <p>Copyright (c) 2023 Eddie Larabi</p>
 
 <p>
