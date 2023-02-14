@@ -1,102 +1,147 @@
 /** @format */
+const busesLoaction =
+  "https://api-v3.mbta.com/vehicles?api_key=172ad98635c0434da2487ac7bf45418c&filter[route]=1";
 
-const url =
-  "https://api-v3.mbta.com/vehicles?api_key=ca34f7b7ac8a445287cab52fb451030a&filter[route]=1&include=trip";
-// get token at https://account.mapbox.com
+const stopaddress =
+  "https://api-v3.mbta.com/stops?api_key=172ad98635c0434da2487ac7bf45418c&filter[route]=1";
+
+async function getdata() {
+  const response = await fetch(stopaddress);
+  const data = response.data;
+
+  print(data);
+}
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoic29mdGV4cGVyaW1lbnQiLCJhIjoiY2tjMngyZm9rMDFvajJzczJ3aWo0bnh6aiJ9.Bc_qK9Xf8SFBXkFM_x2gpg";
 
 const markers = [];
-const dataArray = [];
+const buses = [];
+const inboundColor = "#00FF00";
+const outboundClor = "#FF0000";
 
-//Load map
+const map = new mapboxgl.Map({
+  container: "map", // div id
+  style: "mapbox://styles/mapbox/streets-v12", // style
+  center: [-71.101, 42.358], // location [lng, lat]
+  zoom: 12, // zoom
+});
+
+//initialize the map
 function init() {
-  var map = new mapboxgl.Map({
-    container: "map", // div id
-    style: "mapbox://styles/mapbox/streets-v11", // style
-    center: [-71.101, 42.358], // location [lng, lat]
-    zoom: 12, // zoom
-  });
-  addMarkers();
+  // Create marker  MIT location
+  const marker = new mapboxgl.Marker({
+    color: "#FF3F",
+  })
+    .setLngLat([-71.0942, 42.3601])
+    .addTo(map);
+
+  // track buses
+  trackBuses();
+
+  // Update Bus stops data
+  trackBusStops();
 }
 
-// Add bus markers to map
-async function addMarkers() {
-  // get bus data
-  var location = await getBusLocations();
-  console.log(location);
-
-  location.forEach((bus) => {
-    var marker = getMarker(bus.id);
-    if (marker) {
-      moveMarker(marker, bus);
-    } else {
-      addMarker(bus);
-    }
-  });
-
-  //timer
-
-  setTimeout(addMarkers, 15000);
+async function trackBusStops() {
+  const response = await fetch(stopaddress);
+  const data = await response.json();
+  const terminusList = data.data;
+  print("bus Stops ====>");
+  print(data);
+  const terminus = terminusList.map((x) => x.attributes.name);
+  print(terminus);
+  //setTimeout(trackBusStops, 10000);
 }
 
-// GD
-async function getBusLocations() {
+// map data
+async function trackBuses() {
+  // get data from MBTA API
   try {
-    const response = await fetch(url);
-    const json = await response.json();
-    return json.data;
-  } catch (error) {
-    console.log(error);
-  }
+    const response = await fetch(busesLoaction);
+    const data = await response.json();
+
+    let busList = data.data;
+    //print(" Updated bus list  : ");
+    print(busList);
+    const busLabel = busList.map((m) => m.attributes.label);
+    //print(busLabel);
+
+    // update markers
+    busList.forEach((bus) => {
+      let id = bus.id;
+      let markerItem = getElement(id);
+      //print("marker id =>" + getElement(id));
+
+      if (markerItem) {
+        //move marker
+        moveMarker(bus);
+      } else {
+        //add Marker and update the buses list
+        addMarker(bus);
+      }
+    });
+
+    //setTimeout(trackBuses, 5000);
+
+    const markerLabel = markers.map((x) => x.id);
+    print("Markers aftertimeout ====> ");
+    print(markerLabel);
+  } catch {}
 }
 
-function getMarker(id) {
-  var marker = markers.find(function (item) {
+//check on the marker if it exists
+function getElement(id) {
+  let markerItem = markers.find(function (item) {
     return item.id === id;
   });
-  return marker;
+  //if (markerItem) print("getElement marker return ===>  " + markerItem.id);
+  return markerItem;
 }
 
-function addMarker(bus) {
-  var icon = getIcon(bus);
+//Move Marker
+function moveMarker(bus) {
+  //print("Marker en move ========> " + bus.id);
+  let markerItem = markers.find(function (item) {
+    return item.id === bus.id;
+  });
 
-  var marker = new mapboxgl.Marker().setLngLat([
-    bus.attributes.latitude,
+  markerItem.marker.setLngLat([
     bus.attributes.longitude,
+    bus.attributes.latitude,
   ]);
 
-  //marker.addTo(map);
-  markers.push(marker);
-  console.log("longitude =" + bus.attributes.longitude);
-  console.log(" icon ====================== " + icon);
+  markerItem.marker._color = getColor(bus);
+  //print(getColor(bus));
 }
 
-function moveMarker(marker, bus) {
-  // change icon if bus has changed direction
-  var icon = getIcon(bus);
-  console.log(icon);
-  marker.setIcon(icon);
-
-  // move icon to new lat/lon
-
-  marker.setLngLat(bus.attributes.longitude, bus.attributes.latitude);
-
-  //marker.update();
-  //marker.addTo(map); display the icon
-  console.log("updated icon ===== " + icon);
+// Create a new marker.
+function addMarker(bus) {
+  let dir = bus.attributes.direction_id;
+  let id = bus.id;
+  let nwmarker = {
+    id: id,
+    marker: new mapboxgl.Marker({
+      color: getColor(bus),
+    })
+      .setLngLat([bus.attributes.longitude, bus.attributes.latitude])
+      .addTo(map),
+  };
+  print("markerItem  added = = > " + nwmarker.id);
+  markers.push(nwmarker);
 }
 
-function getIcon(bus) {
-  // select icon based on bus direction
-  // console.log(
-  //   "bus.attributes.direction_id == " + bus.attributes.direction_id
-  // );
-  if (bus.attributes.direction_id === 0) {
-    return "red.png";
-  }
-  return "blue.png";
+// color of the marker
+function getColor(bus) {
+  const direction = bus.attributes.direction_id;
+
+  if (direction === 0) return inboundColor;
+  if (direction === 1) return outboundClor;
+}
+
+// console print
+function print(x) {
+  console.log(x);
 }
 
 window.onload = init();
