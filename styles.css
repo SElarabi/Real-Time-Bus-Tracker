@@ -1,47 +1,91 @@
-
-/** 
- 
-*/
-
+/** @format */
+/* Define a CSS animation */
+@keyframes spin {
+	0% {
+		transform: rotate(0deg); /* Start with no rotation */
+	}
+	100% {
+		transform: rotate(360deg); /* Rotate 360 degrees for one full spin */
+	}
+}
+@keyframes fade {
+	0%,
+	100% {
+		opacity: 0.5; /* Start and end with opacity 0.5 (half-transparent) */
+	}
+	50% {
+		opacity: 1; /* Middle of the animation, opacity is 1 (fully opaque) */
+	}
+}
+@keyframes bounce {
+	0%,
+	20%,
+	50%,
+	80%,
+	100% {
+		transform: translateY(0);
+	}
+	40% {
+		transform: translateY(-30px);
+	}
+	60% {
+		transform: translateY(-15px);
+	}
+}
+/* Style the custom marker element */
+.custom-marker {
+	width: 30px;
+	height: 30px;
+	background-color: rgb(54, 13, 168);
+	border-radius: 50%;
+	display: flex; /* Use flexbox for label positioning */
+	align-items: center; /* Center vertically */
+	justify-content: center; /* Center horizontally */
+}
+/* Style the label */
+.label {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); /* Center the label within the marker */
+	font-size: 12px;
+	color: white;
+}
 #game {
-  width: 100%;
-  height: 500;
-  background-color: rgb(73, 207, 222);
-  
-  border: solid rgb(17, 17, 18);
-  margin: auto;
+	width: 100%;
+	height: 500;
+	background-color: rgb(73, 207, 222);
+
+	border: solid rgb(17, 17, 18);
+	margin: auto;
 }
 
 .myFlexcontainer {
-  display: grid;
-  width: 500px; 
-  height: 500px; 
-  
+	display: grid;
+	width: 500px;
+	height: 500px;
 }
-.demoBox{
-  display: inline-flex;
-  background-color: pink;
-  border: 1px solid black;
-  border-radius: 25%;
-  padding: 2em;
+.demoBox {
+	display: inline-flex;
+	background-color: pink;
+	border: 1px solid black;
+	border-radius: 25%;
+	padding: 2em;
 }
-.pic-boita{
-    width: 050px; 
-    height: 050px;                              
-    display: flex; /* Enable flexbox layout */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    
-  
+.pic-boita {
+	width: 050px;
+	height: 050px;
+	display: flex; /* Enable flexbox layout */
+	align-items: center; /* Center items vertically */
+	justify-content: center; /* Center items horizontally */
 }
 .centered-img {
-    max-width: 100%; /* Scale down large images */
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+	max-width: 100%; /* Scale down large images */
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
 }
 .squared-img {
-    max-width: 100%; /* Scale down large images */
-    width: 50px;
-    height: 50px;
+	max-width: 100%; /* Scale down large images */
+	width: 50px;
+	height: 50px;
 }
