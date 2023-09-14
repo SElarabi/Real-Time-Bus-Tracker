@@ -17,7 +17,7 @@ mapboxgl.accessToken =
 const busList = [];
 const markers = [];
 const buses = [];
-const inboundColor = '#00FF00';
+const inboundColor = 'rgb(33, 126, 15)';
 const outboundClor = '#FF0000';
 
 const map = new mapboxgl.Map({
