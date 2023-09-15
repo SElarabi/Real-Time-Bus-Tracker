@@ -1,4 +1,34 @@
 /** @format */
+/* Style for the table container */
+.table-container {
+	max-height: 760px; /* Set the desired height */
+	overflow-y: auto; /* Enable vertical scrolling */
+	position: relative; /* Ensure proper stacking of header and content */
+}
+
+/* Style for the header table */
+.table.table-header {
+	position: sticky;
+	top: 0;
+	background-color: #343a40;
+	color: white;
+	z-index: 1; /* Ensure the header is above the content */
+}
+
+/* Style for table rows */
+.table.table-content tr {
+	cursor: pointer;
+}
+
+/* Style for alternating row background colors */
+.table.table-content tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+/* Style for row hover effect */
+.table.table-content tr:hover {
+	background-color: #cce5ff;
+}
 /* Define a CSS animation */
 @keyframes spin {
 	0% {
@@ -17,21 +47,7 @@
 		opacity: 1; /* Middle of the animation, opacity is 1 (fully opaque) */
 	}
 }
-@keyframes bounce {
-	0%,
-	20%,
-	50%,
-	80%,
-	100% {
-		transform: translateY(0);
-	}
-	40% {
-		transform: translateY(-30px);
-	}
-	60% {
-		transform: translateY(-15px);
-	}
-}
+
 /* Style the custom marker element */
 .custom-marker {
 	width: 30px;

@@ -19,6 +19,7 @@ const markers = [];
 const buses = [];
 const inboundColor = 'rgb(33, 126, 15)';
 const outboundClor = '#FF0000';
+const busStops = [];
 
 const map = new mapboxgl.Map({
 	container: 'map', // div id
@@ -26,10 +27,11 @@ const map = new mapboxgl.Map({
 	center: [-71.101, 42.358], // location [lng, lat]
 	zoom: 12, // zoom
 });
-// Create a custom marker element
 
 //initialize the map
 function init() {
+	getBusStops();
+
 	// Create marker  MIT location
 	const marker = new mapboxgl.Marker({
 		color: '#FF3F',
@@ -43,19 +45,34 @@ function init() {
 	setInterval(trackBuses, 5000);
 
 	// Update Bus stops data
-
-	//trackBusStops();
 }
 
-async function trackBusStops() {
-	const response = await fetch(stopaddress);
-	const data = await response.json();
-	const terminusList = data.data;
-	console.log('bus Stops ====>');
-	console.log(data);
-	const terminus = terminusList.map((x) => x.attributes.name);
-	console.log('terminus', terminus);
-	//setTimeout(trackBusStops, 10000);
+//Functions used after init
+
+async function getBusStops() {
+	try {
+		const response = await fetch(stopaddress);
+		const data = await response.json();
+		const busStops = data.data;
+		console.log('terminusList ', busStops);
+		// Clear the existing table data
+		const busStopsTableBody = document.getElementById('busStopsTableBody');
+		busStopsTableBody.innerHTML = '';
+
+		// Populate the table with bus stop data
+		busStops.forEach((stop, index) => {
+			const row = document.createElement('tr');
+			row.innerHTML = `
+        <th scope="row">${index + 1}</th>
+        <td>${stop.attributes.at_street}</td>
+        <td>${stop.id}</td>
+      `;
+			busStopsTableBody.appendChild(row);
+		});
+		console.log('Bus Stops data loaded successfully.');
+	} catch (error) {
+		console.error('Error fetching bus stops:', error);
+	}
 }
 
 // map data
@@ -69,8 +86,11 @@ async function trackBuses() {
 		console.log('BusList:', busList);
 
 		// Extract bus labels
-		const busLabels = busList.map((bus) => bus.attributes.label);
-		console.log('Bus Labels:', busLabels);
+		//const busLabels = busList.map((bus) => bus.attributes.label);
+		const busLabel0 = busList[0].attributes.label;
+		const busStop0 = busList[0].relationships.stop.data.id;
+		console.log('Bus Labels:', busLabel0);
+		console.log('Bus Stop:', busStop0);
 
 		// Update markers
 		busList.forEach((bus) => {
@@ -88,7 +108,7 @@ async function trackBuses() {
 		});
 
 		const markerLabel = markers.map((marker) => marker.id);
-		console.log('Markers after timeout:', markerLabel);
+		//console.log('Markers after timeout:', markerLabel);
 	} catch (error) {
 		console.error('Error:', error);
 	}
@@ -131,7 +151,7 @@ function addMarker(bus) {
 			.setLngLat([bus.attributes.longitude, bus.attributes.latitude])
 			.addTo(map),
 	};
-	print('markerItem  added : ' + nwmarker.id);
+	//print('markerItem  added : ' + nwmarker.id);
 	markers.push(nwmarker);
 }
 
@@ -141,11 +161,6 @@ function getColor(bus) {
 
 	if (direction === 0) return inboundColor;
 	if (direction === 1) return outboundClor;
-}
-
-// console print
-function print(x) {
-	console.log(x);
 }
 
 window.onload = init();

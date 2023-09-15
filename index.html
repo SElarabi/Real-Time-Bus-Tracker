@@ -25,6 +25,7 @@
 </head>
 
 <body style="min-height: 100vh; display: flex; flex-direction: column">
+  <!-- navbar-->
   <nav class="navbar sticky-top navbar-expand-md navbar-dark m-1" style="background-color: rgb(3, 32, 32)">
     <div class="container-fluid shadow-sm">
       <a class="navbar-brand">
@@ -75,24 +76,32 @@
 
 
   <div class="container-fluid">
-    <div class="row p-5">
+    <div class="row p-lg-5">
       <!--Map Section-->
       <div id="gameDemo " class="col-auto border">
         <div id="map" style="width: 1024px; height: 768px"></div>
       </div>
-      <!--text Infos -->
-      <div class="col p-5">
-        <div class="d-grid p-2 text-bg-danger">
-          This Project is still in progress satge, data is displayed
-          in console. the code in mapanimation.js file is not completed yet and need
-          modifications to display animated icons.
+      <!--TABLE-DATA  -->
+      <div class="col ">
+        <div id='busStopsList' class="d-grid p-2 text-bg-info">
+          <div class="table-container">
+            <table class="table table-header">
+              <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">BUS</th>
+                  <th scope="col">NEXT STOP</th>
+                </tr>
+              </thead>
+            </table>
+            <table class="table table-content">
+              <tbody id="busStopsTableBody"></tbody>
+            </table>
+          </div>
         </div>
         <br />
         <!-- github repository button link-->
-        <div class="card-body">
-          <a href="#" onclick="window.open('https://github.com/SElarabi/Real-Time-Bus-Tracker','blanck')"
-            class="btn btn-primary opacity-100">Github repository</a>
-        </div>
+
       </div>
     </div>
   </div>
