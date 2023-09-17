@@ -5,21 +5,14 @@ const busesLoaction =
 const stopaddress =
 	'https://api-v3.mbta.com/stops?api_key=172ad98635c0434da2487ac7bf45418c&filter[route]=1';
 
-async function getdata() {
-	const response = await fetch(stopaddress);
-	const data = await response.data;
-
-	console.log('STOP ADDRESS DATA ', data);
-}
-
 mapboxgl.accessToken =
 	'pk.eyJ1Ijoic29mdGV4cGVyaW1lbnQiLCJhIjoiY2tjMngyZm9rMDFvajJzczJ3aWo0bnh6aiJ9.Bc_qK9Xf8SFBXkFM_x2gpg';
-const busList = [];
-const markers = [];
-const buses = [];
+let busList = [];
+let markers = [];
+let buses = [];
+let busStops = [];
 const inboundColor = 'rgb(33, 126, 15)';
 const outboundClor = '#FF0000';
-const busStops = [];
 
 const map = new mapboxgl.Map({
 	container: 'map', // div id
@@ -42,7 +35,7 @@ function init() {
 	// track buses
 	trackBuses();
 	// Track buses every 5 seconds
-	//setInterval(trackBuses, 5000);
+	setInterval(trackBuses, 5000);
 
 	// Update Bus stops data
 }
@@ -53,22 +46,9 @@ async function getBusStops() {
 	try {
 		const response = await fetch(stopaddress);
 		const data = await response.json();
-		const busStops = data.data;
-		console.log('terminusList ', busStops);
-		// Clear the existing table data
-		const busStopsTableBody = document.getElementById('busStopsTableBody');
-		busStopsTableBody.innerHTML = '';
+		busStops = data.data;
+		console.log('BUS STOPS ', busStops);
 
-		// Populate the table with bus stop data
-		busStops.forEach((stop, index) => {
-			const row = document.createElement('tr');
-			row.innerHTML = `
-        <th scope="row">${index + 1}</th>
-        <td>${stop.attributes.at_street}</td>
-        <td>${stop.id}</td>
-      `;
-			busStopsTableBody.appendChild(row);
-		});
 		console.log('Bus Stops data loaded successfully.');
 	} catch (error) {
 		console.error('Error fetching bus stops:', error);
@@ -81,12 +61,12 @@ async function trackBuses() {
 		// Get data from MBTA API
 		const response = await fetch(busesLoaction);
 		const data = await response.json();
-		const busList = data.data;
+		busList = data.data;
 
 		console.log('BusList:', busList);
 
-		// Extract bus labels
-		//const busLabels = busList.map((bus) => bus.attributes.label);
+		// Extract bus labels AND ids
+
 		const busLabel0 = busList[0].attributes.label;
 		const busStop0 = busList[0].relationships.stop.data.id;
 		console.log('Bus Labels:', busLabel0);
@@ -107,8 +87,28 @@ async function trackBuses() {
 			}
 		});
 
-		const markerLabel = markers.map((marker) => marker.id);
-		//console.log('Markers after timeout:', markerLabel);
+		// Clear the existing table data
+		const busStopsTableBody = document.getElementById('busStopsTableBody');
+		busStopsTableBody.innerHTML = '';
+
+		// Populate the table with bus stop data
+		busList.forEach((bus, index) => {
+			//find the stop id
+			let id = bus.relationships.stop.data.id;
+			// based on this id find busStop element with thid id
+			let matchingStop = busStops.find((stop) => stop.id === id);
+			if (matchingStop) {
+				const row = document.createElement('tr');
+				row.innerHTML = `
+		      <th scope="row">${index + 1}</th>
+					
+		      <td>${bus.attributes.label}</td>
+		      <td>${matchingStop.attributes.at_street}</td>
+		      <td>${bus.relationships.stop.data.id}</td>
+		    `;
+				busStopsTableBody.appendChild(row);
+			}
+		});
 	} catch (error) {
 		console.error('Error:', error);
 	}
