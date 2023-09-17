@@ -23,8 +23,6 @@ const map = new mapboxgl.Map({
 
 //initialize the map
 function init() {
-	getBusStops();
-
 	// Create marker  MIT location
 	const marker = new mapboxgl.Marker({
 		color: '#FF3F',
@@ -32,16 +30,16 @@ function init() {
 		.setLngLat([-71.0942, 42.3601])
 		.addTo(map);
 
+	// Load Bus stops data
+	getBusStops();
 	// track buses
 	trackBuses();
 	// Track buses every 5 seconds
 	setInterval(trackBuses, 5000);
-
-	// Update Bus stops data
 }
 
 //Functions used after init
-
+// GET BUS STOPS
 async function getBusStops() {
 	try {
 		const response = await fetch(stopaddress);
@@ -65,13 +63,6 @@ async function trackBuses() {
 
 		console.log('BusList:', busList);
 
-		// Extract bus labels AND ids
-
-		const busLabel0 = busList[0].attributes.label;
-		const busStop0 = busList[0].relationships.stop.data.id;
-		console.log('Bus Labels:', busLabel0);
-		console.log('Bus Stop:', busStop0);
-
 		// Update markers
 		busList.forEach((bus) => {
 			const id = bus.id;
@@ -92,22 +83,32 @@ async function trackBuses() {
 		busStopsTableBody.innerHTML = '';
 
 		// Populate the table with bus stop data
-		busList.forEach((bus, index) => {
+		busStops.forEach((stop, index) => {
 			//find the stop id
-			let id = bus.relationships.stop.data.id;
-			// based on this id find busStop element with thid id
-			let matchingStop = busStops.find((stop) => stop.id === id);
-			if (matchingStop) {
-				const row = document.createElement('tr');
-				row.innerHTML = `
+			let id = stop.id;
+			let station = stop.attributes.at_street;
+			// based on this id find bus element with thi id
+			let matchingBus = busList.find(
+				(bus) => bus.relationships.stop.data.id === id
+			);
+
+			const row = document.createElement('tr');
+			row.innerHTML = `
 		      <th scope="row">${index + 1}</th>
-					
-		      <td>${bus.attributes.label}</td>
-		      <td>${matchingStop.attributes.at_street}</td>
-		      <td>${bus.relationships.stop.data.id}</td>
-		    `;
-				busStopsTableBody.appendChild(row);
-			}
+					<td >${station ? station : stop.attributes.name}</td>
+					<td>${
+						matchingBus && matchingBus.attributes.direction_id === 0
+							? matchingBus.attributes.label
+							: ''
+					}</td>
+					<td>${
+						matchingBus && matchingBus.attributes.direction_id === 1
+							? matchingBus.attributes.label
+							: ''
+					}</td>
+				 `;
+
+			busStopsTableBody.appendChild(row);
 		});
 	} catch (error) {
 		console.error('Error:', error);
@@ -140,18 +141,42 @@ function moveMarker(bus) {
 
 // Create a new marker.
 function addMarker(bus) {
-	let dir = bus.attributes.direction_id; //bus direction
+	let dir = bus.attributes.direction_id; // bus direction
 	let id = bus.id;
 
-	let nwmarker = {
+	const customMarkerElement = document.createElement('div');
+	customMarkerElement.className = 'custom-marker';
+
+	// Set the initial background color based on direction
+	const backgroundColor = getColor(bus);
+	customMarkerElement.style.backgroundColor = backgroundColor;
+
+	// Create a label element for bus ID
+	const labelElement = document.createElement('div');
+	labelElement.className = 'label';
+	labelElement.textContent = bus.attributes.label;
+
+	// Style the label to center it within the custom marker element
+	labelElement.style.position = 'absolute';
+	labelElement.style.top = '50%';
+	labelElement.style.left = '50%';
+	labelElement.style.transform = 'translate(-50%, -50%)';
+
+	// Append the label to the custom marker element
+	customMarkerElement.appendChild(labelElement);
+
+	const nwmarker = {
 		id: id,
 		marker: new mapboxgl.Marker({
-			color: getColor(bus),
+			element: customMarkerElement,
+			anchor: 'bottom', // Set anchor point to the bottom of the marker
 		})
 			.setLngLat([bus.attributes.longitude, bus.attributes.latitude])
 			.addTo(map),
+		customMarkerElement: customMarkerElement, // Store the custom marker element
+		labelElement: labelElement, // Store the label element
 	};
-	//print('markerItem  added : ' + nwmarker.id);
+
 	markers.push(nwmarker);
 }
 
