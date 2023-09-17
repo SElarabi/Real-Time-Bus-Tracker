@@ -42,7 +42,7 @@ function init() {
 	// track buses
 	trackBuses();
 	// Track buses every 5 seconds
-	setInterval(trackBuses, 5000);
+	//setInterval(trackBuses, 5000);
 
 	// Update Bus stops data
 }
