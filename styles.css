@@ -39,12 +39,29 @@
 }
 
 .bus-cell-green {
-	font-style: italic; /* Apply italic style to bus labels */
-	color: #041d01; /* Set the text color */
+	font-style: italic;
+	font-weight: bold; /* Apply italic style to bus labels */
+	color: #0e310a; /* Set the text color */
 }
 .bus-cell-red {
-	font-style: italic; /* Apply italic style to bus labels */
+	font-style: italic;
+	font-weight: bold; /* Apply italic style to bus labels */
 	color: #f10909; /* Set the text color */
+}
+@keyframes flash {
+	0% {
+		opacity: 1; /* Fully visible */
+	}
+	50% {
+		opacity: 0; /* Invisible */
+	}
+	100% {
+		opacity: 1; /* Fully visible */
+	}
+}
+
+.flash-text {
+	animation: flash 0.5s infinite; /* Apply the flashing animation */
 }
 
 /* Style the custom marker element */

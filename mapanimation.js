@@ -96,16 +96,28 @@ async function trackBuses() {
 			row.innerHTML = `
 		      <th scope="row">${index + 1}</th>
 					<td class="equal-td ">${station ? station : stop.attributes.name}</td>
-					<td class="equal-td bus-cell-green">${
+					<td class="equal-td bus-cell-green ${
 						matchingBus && matchingBus.attributes.direction_id === 0
-							? matchingBus.attributes.label
+							? 'flash-text'
 							: ''
-					}</td>
-					<td class="equal-td bus-cell-red ">${
+					}">
+    ${
+					matchingBus && matchingBus.attributes.direction_id === 0
+						? matchingBus.attributes.label
+						: '--'
+				}
+  </td>
+					<td class="equal-td bus-cell-red ${
 						matchingBus && matchingBus.attributes.direction_id === 1
-							? matchingBus.attributes.label
+							? 'flash-text'
 							: ''
-					}</td>
+					}">
+    ${
+					matchingBus && matchingBus.attributes.direction_id === 1
+						? matchingBus.attributes.label
+						: '--'
+				}
+  </td>
 				 `;
 
 			busStopsTableBody.appendChild(row);
