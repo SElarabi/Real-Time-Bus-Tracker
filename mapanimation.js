@@ -11,8 +11,6 @@ let busList = [];
 let markers = [];
 let buses = [];
 let busStops = [];
-const inboundColor = 'rgb(33, 126, 15)';
-const outboundClor = '#FF0000';
 
 const map = new mapboxgl.Map({
 	container: 'map', // div id
@@ -70,6 +68,8 @@ async function trackBuses() {
 			const markerItem = getElement(id);
 
 			if (markerItem) {
+				// console.log('markerItem', markerItem);
+				markerItem.customMarkerElement.style.backgroundColor = getColor(bus);
 				// Move marker
 				moveMarker(bus);
 			} else {
@@ -146,9 +146,6 @@ function moveMarker(bus) {
 		bus.attributes.longitude,
 		bus.attributes.latitude,
 	]);
-
-	markerItem.marker.color = getColor(bus);
-	//markerItem.marker._color = getColor(bus);
 }
 
 // Create a new marker.
@@ -160,7 +157,7 @@ function addMarker(bus) {
 	customMarkerElement.className = 'custom-marker';
 
 	// Set the initial background color based on direction
-	const backgroundColor = getColor(bus);
+	let backgroundColor = getColor(bus);
 	customMarkerElement.style.backgroundColor = backgroundColor;
 
 	// Create a label element for bus ID
@@ -177,7 +174,7 @@ function addMarker(bus) {
 	// Append the label to the custom marker element
 	customMarkerElement.appendChild(labelElement);
 
-	const nwmarker = {
+	let nwmarker = {
 		id: id,
 		marker: new mapboxgl.Marker({
 			element: customMarkerElement,
@@ -194,10 +191,10 @@ function addMarker(bus) {
 
 // color of the marker
 function getColor(bus) {
-	const direction = bus.attributes.direction_id;
+	let direction = bus.attributes.direction_id;
 
-	if (direction === 0) return inboundColor;
-	if (direction === 1) return outboundClor;
+	if (direction === 0) return 'green';
+	if (direction === 1) return 'red';
 }
 
 window.onload = init();
