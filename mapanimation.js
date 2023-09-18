@@ -95,13 +95,13 @@ async function trackBuses() {
 			const row = document.createElement('tr');
 			row.innerHTML = `
 		      <th scope="row">${index + 1}</th>
-					<td >${station ? station : stop.attributes.name}</td>
-					<td>${
+					<td class="equal-td ">${station ? station : stop.attributes.name}</td>
+					<td class="equal-td bus-cell-green">${
 						matchingBus && matchingBus.attributes.direction_id === 0
 							? matchingBus.attributes.label
 							: ''
 					}</td>
-					<td>${
+					<td class="equal-td bus-cell-red ">${
 						matchingBus && matchingBus.attributes.direction_id === 1
 							? matchingBus.attributes.label
 							: ''

@@ -29,28 +29,24 @@
 .table.table-content tr:hover {
 	background-color: #cce5ff;
 }
-/* Define a CSS animation */
-@keyframes spin {
-	0% {
-		transform: rotate(0deg); /* Start with no rotation */
-	}
-	100% {
-		transform: rotate(360deg); /* Rotate 360 degrees for one full spin */
-	}
-}
-@keyframes fade {
-	0%,
-	100% {
-		opacity: 0.5; /* Start and end with opacity 0.5 (half-transparent) */
-	}
-	50% {
-		opacity: 1; /* Middle of the animation, opacity is 1 (fully opaque) */
-	}
-}
+
 .equal-td {
 	width: 50%; /* Adjust the width as needed */
-	text-align: center; /* Center content horizontally in the cell */
 }
+.station-cell {
+	font-weight: bold; /* Apply a bold font weight to the station names */
+	color: #333; /* Set the text color */
+}
+
+.bus-cell-green {
+	font-style: italic; /* Apply italic style to bus labels */
+	color: #041d01; /* Set the text color */
+}
+.bus-cell-red {
+	font-style: italic; /* Apply italic style to bus labels */
+	color: #f10909; /* Set the text color */
+}
+
 /* Style the custom marker element */
 .custom-marker {
 	width: 40px;
