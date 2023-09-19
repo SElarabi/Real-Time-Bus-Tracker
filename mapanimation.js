@@ -35,7 +35,7 @@ function init() {
 	// track buses
 	trackBuses();
 	// Track buses every 5 seconds
-	setInterval(trackBuses, 5000);
+	setInterval(trackBuses, 10000);
 }
 
 //Functions used after init
