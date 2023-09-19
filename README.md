@@ -2,9 +2,7 @@
 
 # Real-Time Bus Tracker
 
-Explore the live site: <a href="https://selarabi.github.io/Real-Time-Bus-Tracker/" target="_blank">Real-Time Bus Tracker</a>
-
-## Overview
+Explore the live site: [Real-Time Bus Tracker](https://selarabi.github.io/Real-Time-Bus-Tracker/)
 
 Welcome to the Real-Time Bus Tracker! This dynamic web application, powered by JavaScript and enhanced with CSS animations, offers a real-time visualization of bus locations on an interactive map. The heart of this system lies in the Mapbox API, which brings these bus locations to life as custom icons.
 
@@ -35,7 +33,7 @@ Welcome to the Real-Time Bus Tracker! This dynamic web application, powered by J
 ## Dependencies
 
 - To unlock the full potential of this website, you'll need a Mapbox API key, granting access to map-related functionalities.
-- Check <a href= "https://docs.mapbox.com/mapbox-gl-js/api/" target="_blank">mapBox</a> for documentation and sign up.
+- Check [mapBox](https://docs.mapbox.com/mapbox-gl-js/api/) for documentation and sign up.
 
 - We've tastefully styled this website using Bootstrap CSS and complemented it with custom styling in the `style.css` file.
 
