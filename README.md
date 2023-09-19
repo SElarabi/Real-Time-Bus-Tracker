@@ -2,37 +2,41 @@
 
 # Real-Time Bus Tracker
 
-Visit the site: [Real-Time Bus Tracker](https://selarabi.github.io/Real-Time-Bus-Tracker/)
+Explore the live site: [Real-Time Bus Tracker](https://selarabi.github.io/Real-Time-Bus-Tracker/)
 
-## Description
+## Overview
 
-This webpage is powered by JavaScript and enhanced with CSS animations to provide a dynamic display of bus locations in real-time. It leverages the Mapbox API to showcase these locations using customized icons on a map.
+Welcome to the Real-Time Bus Tracker! This dynamic web application, powered by JavaScript and enhanced with CSS animations, offers a real-time visualization of bus locations on an interactive map. The heart of this system lies in the Mapbox API, which brings these bus locations to life as custom icons.
 
-## How It Runs
+## How It Works
 
-The code in the `mapanimation.js` file will initially load a Mapbox map with a set style and center point.
+1. **Initialization**: The journey begins with the `mapanimation.js` script. It sets the stage by initializing a Mapbox map with predefined styling and a central focus point.
 
-1. **MIT Marker**: It adds an MIT marker landmark to the map.
+2. **MIT Landmark Marker**: We've thoughtfully included an MIT marker to help users orient themselves on the map.
 
-2. **Fetching Bus Stops Data**: The code fetches bus stop data and starts tracking related buses running along these bus stops using markers for display.
+3. **Bus Stop Data**: To track buses effectively, we gather data about bus stops along the route. This data becomes instrumental in monitoring buses' progress.
 
-3. **Adding Markers**: The `addMarkers` function retrieves the bus data from the MBTA API and adds/updates markers on the map for each bus. The bus data includes the bus id, latitude, and longitude. A marker icon color is determined based on the bus's direction.
+4. **Marker Magic**: The `addMarkers` function works behind the scenes to retrieve bus data from the MBTA API and update the map with markers for each bus. The markers' colors provide at-a-glance information about the bus's direction.
 
-## Functions
+## Key Functions
 
-- `getBusStops()`: Fetches data for all bus stops and subdivides them into two arrays, one for inbound (leaving Harvard going to Boston) and the other for outbound (coming from Boston to Harvard as the final destination).
+- `getBusStops()`: Organizes bus stop data into two arrays—one for inbound buses (from Harvard to Boston) and the other for outbound buses (from Boston to Harvard).
 
-- `trackBuses()`: Is executed every 10 seconds to update the bus location markers and displayed data tables. The code uses the fetch API for data retrieval and the Mapbox API for map and marker manipulation.
+- `trackBuses()`: This function runs like clockwork, updating bus location markers and data tables every 10 seconds. It leverages the fetch API for data retrieval and the Mapbox API for seamless map and marker manipulation.
 
-- `getElement(id)`: Checks if a marker exists.
+- `getElement(id)`: A handy utility function to check if a marker element exists.
 
-- `moveMarker()`: Takes a bus element as an argument and updates its associated marker accordingly.
+- `moveMarker()`: Updates the associated marker for a given bus element.
 
-- `addMarker(bus)`: Takes a bus element and creates an associated new marker.
+- `addMarker(bus)`: Creates a new marker for a bus element.
 
-- `getColor(bus)`: Updates the marker color based on its direction to Harvard or Boston. Green markers are for those heading to Harvard, and red markers are for those leaving from Harvard.
+- `getColor(bus)`: Determines marker colors based on bus direction: green for buses heading to Harvard and red for buses leaving Harvard.
 
-This website was built using the Mapbox API, which will require an API key to access the map functionality. Additionally, Bootstrap CSS and custom styling were used to design the site.
+## Dependencies
+
+- To unlock the full potential of this website, you'll need a Mapbox API key, granting access to map-related functionalities. <link href ="https://docs.mapbox.com/mapbox-gl-js/api/ "> for documentation and sign up.
+
+- We've tastefully styled this website using Bootstrap CSS and complemented it with custom styling in the `style.css` file.
 
 ## Bootstrap CDN Links
 
@@ -44,9 +48,26 @@ This website was built using the Mapbox API, which will require an API key to ac
   	integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
   	crossorigin="anonymous"
   />
-  <h2>License</h2>
+  /* MIT License
   ```
 
-<p><strong>MIT License</strong> (c) 2023 Eddie Larabi</p>
+Copyright (c) 2023 Eddie Larabi
 
-<p>This project is open-source and available under the MIT License, granting permission to use, modify, and distribute the software. Please refer to the LICENSE file for more details.</p>
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+\*/
