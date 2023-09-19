@@ -2,7 +2,7 @@
 
 # Real-Time Bus Tracker
 
-Explore the live site: [Real-Time Bus Tracker](https://selarabi.github.io/Real-Time-Bus-Tracker/)
+Explore the live site: <a href="https://selarabi.github.io/Real-Time-Bus-Tracker/" target="_blank">Real-Time Bus Tracker</a>
 
 ## Overview
 
@@ -34,7 +34,8 @@ Welcome to the Real-Time Bus Tracker! This dynamic web application, powered by J
 
 ## Dependencies
 
-- To unlock the full potential of this website, you'll need a Mapbox API key, granting access to map-related functionalities. [mapBox]("https://docs.mapbox.com/mapbox-gl-js/api/ ") for documentation and sign up.
+- To unlock the full potential of this website, you'll need a Mapbox API key, granting access to map-related functionalities.
+- Check <a href= "https://docs.mapbox.com/mapbox-gl-js/api/" target="_blank">mapBox</a> for documentation and sign up.
 
 - We've tastefully styled this website using Bootstrap CSS and complemented it with custom styling in the `style.css` file.
 
@@ -66,20 +67,8 @@ Welcome to the Real-Time Bus Tracker! This dynamic web application, powered by J
 ></script>
 ```
 
-## MIT License
+## License
 
-`Copyright (c) 2023 Eddie Larabi `
-Permission is hereby granted, free of charge, to
-any person obtaining a copy of this software and associated documentation files
-(the "Software"), to deal in the Software without restriction, including without
-limitation the rights to use, copy, modify, merge, publish, distribute,
-sublicense, and/or sell copies of the Software, and to permit persons to whom
-the Software is furnished to do so, subject to the following conditions: The
-above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS
-IS," WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
-TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
-FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
-TORT, OR OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR
-THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+- MIT License (c) 2023 Eddie Larabi
+
+This project is open-source and available under the MIT License, granting permission to use, modify, and distribute the software. Please refer to the LICENSE file for more details.
