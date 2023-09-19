@@ -1,7 +1,7 @@
 /** @format */
 /* Style for the table container */
 .table-container {
-	max-height: 760px; /* Set the desired height */
+	max-height: 760px; /*  desired height */
 	overflow-y: auto; /* Enable vertical scrolling */
 	position: relative; /* Ensure proper stacking of header and content */
 }
@@ -31,22 +31,25 @@
 }
 
 .equal-td {
-	width: 50%; /* Adjust the width as needed */
+	width: auto; /* Adjust the width as needed */
 }
 .station-cell {
 	font-weight: bold; /* Apply a bold font weight to the station names */
 	color: #333; /* Set the text color */
+	width: 40%; /* Adjust the width as needed */
 }
 
 .bus-cell-green {
 	font-style: italic;
 	font-weight: bold; /* Apply italic style to bus labels */
 	color: #0e310a; /* Set the text color */
+	width: 30%; /* Adjust the width as needed */
 }
 .bus-cell-red {
 	font-style: italic;
 	font-weight: bold; /* Apply italic style to bus labels */
 	color: #f10909; /* Set the text color */
+	width: 30%; /* Adjust the width as needed */
 }
 @keyframes flash {
 	0% {
