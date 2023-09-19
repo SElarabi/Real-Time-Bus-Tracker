@@ -11,6 +11,8 @@ let busList = [];
 let markers = [];
 let buses = [];
 let busStops = [];
+let toBostonStops = [];
+let toHarvardStops = [];
 
 const map = new mapboxgl.Map({
 	container: 'map', // div id
@@ -44,6 +46,10 @@ async function getBusStops() {
 		const data = await response.json();
 		busStops = data.data;
 		console.log('BUS STOPS ', busStops);
+		toBostonStops = busStops.slice(0, 24);
+		console.log('TO BOSTON STOPS ', toBostonStops);
+		toHarvardStops = busStops.slice(23, 46).reverse();
+		console.log('TO HARVARD STOPS ', toHarvardStops);
 
 		console.log('Bus Stops data loaded successfully.');
 	} catch (error) {
@@ -59,7 +65,7 @@ async function trackBuses() {
 		const data = await response.json();
 		busList = data.data;
 
-		console.log('BusList:', busList);
+		//console.log('BusList:', busList);
 
 		// Update markers
 		busList.forEach((bus) => {
@@ -79,11 +85,13 @@ async function trackBuses() {
 		});
 
 		// Clear the existing table data
-		const busStopsTableBody = document.getElementById('busStopsTableBody');
-		busStopsTableBody.innerHTML = '';
+		const toHarvardStopsTableBody = document.getElementById(
+			'toHarvardStopsTableBody'
+		);
+		toHarvardStopsTableBody.innerHTML = '';
 
 		// Populate the table with bus stop data
-		busStops.forEach((stop, index) => {
+		toHarvardStops.forEach((stop, index) => {
 			//find the stop id
 			let id = stop.id;
 			let station = stop.attributes.at_street;
@@ -107,21 +115,58 @@ async function trackBuses() {
 						: '--'
 				}
   </td>
-					<td class=" bus-cell-red ${
-						matchingBus && matchingBus.attributes.direction_id === 1
-							? 'flash-text'
-							: ''
-					}">
-    ${
-					matchingBus && matchingBus.attributes.direction_id === 1
-						? matchingBus.attributes.label
-						: '--'
-				}
-  </td>
+					
 				 `;
 
-			busStopsTableBody.appendChild(row);
+			toHarvardStopsTableBody.appendChild(row);
 		});
+		/////////////////////////////////////
+		// Clear the existing table data
+		// 	const busStopsTableBody = document.getElementById('busStopsTableBody');
+		// 	busStopsTableBody.innerHTML = '';
+
+		// 	// Populate the table with bus stop data
+		// 	busStops.forEach((stop, index) => {
+		// 		//find the stop id
+		// 		let id = stop.id;
+		// 		let station = stop.attributes.at_street;
+		// 		// based on this id find bus element with thi id
+		// 		let matchingBus = busList.find(
+		// 			(bus) => bus.relationships.stop.data.id === id
+		// 		);
+
+		// 		const row = document.createElement('tr');
+		// 		row.innerHTML = `
+		// 	      <th scope="row">${index + 1}</th>
+		// 				<td class=" station-cell ">${station ? station : stop.attributes.name}</td>
+		// 				<td class=" bus-cell-green ${
+		// 					matchingBus && matchingBus.attributes.direction_id === 0
+		// 						? 'flash-text'
+		// 						: ''
+		// 				}">
+		//   ${
+		// 				matchingBus && matchingBus.attributes.direction_id === 0
+		// 					? matchingBus.attributes.label
+		// 					: '--'
+		// 			}
+		// </td>
+		// 				<td class=" bus-cell-red ${
+		// 					matchingBus && matchingBus.attributes.direction_id === 1
+		// 						? 'flash-text'
+		// 						: ''
+		// 				}">
+		//   ${
+		// 				matchingBus && matchingBus.attributes.direction_id === 1
+		// 					? matchingBus.attributes.label
+		// 					: '--'
+		// 			}
+		// </td>
+		// 			 `;
+
+		// 		busStopsTableBody.appendChild(row);
+		// 	});
+
+		//////////////////////////////////////
 	} catch (error) {
 		console.error('Error:', error);
 	}
