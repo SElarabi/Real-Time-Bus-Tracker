@@ -1,0 +1,129 @@
+/** @format */
+/* Style for the table container */
+.table-container {
+	max-height: 760px; /*  desired height */
+	overflow-y: auto; /* Enable vertical scrolling */
+	position: relative; /* Ensure proper stacking of header and content */
+}
+
+/* Style for the header table */
+.table.table-header {
+	position: sticky;
+	top: 0;
+	background-color: #343a40;
+	color: white;
+	z-index: 1; /* Ensure the header is above the content */
+}
+
+/* Style for table rows */
+.table.table-content tr {
+	cursor: pointer;
+}
+
+/* Style for alternating row background colors */
+.table.table-content tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+/* Style for row hover effect */
+.table.table-content tr:hover {
+	background-color: #cce5ff;
+}
+
+.equal-td {
+	width: auto; /* Adjust the width as needed */
+}
+.station-cell {
+	font-weight: bold; /* Apply a bold font weight to the station names */
+	color: #333; /* Set the text color */
+	width: 60%; /* Adjust the width as needed */
+}
+
+.bus-cell-green {
+	font-style: italic;
+	font-weight: bold; /* Apply italic style to bus labels */
+	color: #0e310a; /* Set the text color */
+	width: 40%; /* Adjust the width as needed */
+}
+.bus-cell-red {
+	text-align: center;
+	font-style: italic;
+	font-weight: bold; /* Apply italic style to bus labels */
+	color: #f10909; /* Set the text color */
+	width: 40%; /* Adjust the width as needed */
+}
+@keyframes flash {
+	0% {
+		opacity: 1; /* Fully visible */
+	}
+	50% {
+		opacity: 0.75; /* Invisible */
+	}
+	100% {
+		opacity: 1; /* Fully visible */
+	}
+}
+
+.flash-text {
+	animation: flash 5s infinite; /* Apply the flashing animation */
+}
+
+/* Style the custom marker element */
+.custom-marker {
+	width: 40px;
+	height: 40px;
+
+	border-radius: 50%;
+	display: flex; /* Use flexbox for label positioning */
+	align-items: center; /* Center vertically */
+	justify-content: center; /* Center horizontally */
+	animation: flash 1s infinite;
+}
+/* Style the label */
+.label {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); /* Center the label within the marker */
+	font-size: 18px;
+	color: rgb(9, 9, 9);
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Apply a thicker text shadow */
+}
+#game {
+	width: 100%;
+	height: 500;
+	background-color: rgb(73, 207, 222);
+
+	border: solid rgb(17, 17, 18);
+	margin: auto;
+}
+
+.myFlexcontainer {
+	display: grid;
+	width: 500px;
+	height: 500px;
+}
+.demoBox {
+	display: inline-flex;
+	background-color: pink;
+	border: 1px solid black;
+	border-radius: 25%;
+	padding: 2em;
+}
+.pic-boita {
+	width: 050px;
+	height: 050px;
+	display: flex; /* Enable flexbox layout */
+	align-items: center; /* Center items vertically */
+	justify-content: center; /* Center items horizontally */
+}
+.centered-img {
+	max-width: 100%; /* Scale down large images */
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.squared-img {
+	max-width: 100%; /* Scale down large images */
+	width: 50px;
+	height: 50px;
+}
