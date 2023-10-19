@@ -1,0 +1,24 @@
+{
+	"name": "my-webpack-project",
+	"version": "1.0.0",
+	"description": "My webpack project",
+	"private": true,
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"build": "webpack"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"dotenv": "^16.3.1",
+		"mapbox-gl": "^2.15.0",
+		"path": "^0.12.7"
+	},
+	"main": "index.js",
+	"devDependencies": {
+		"terser-webpack-plugin": "^5.3.9",
+		"webpack": "^5.88.2",
+		"webpack-cli": "^3.3.12"
+	}
+}

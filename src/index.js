@@ -1,12 +1,12 @@
 /** @format */
-const busesLoaction =
-	'https://api-v3.mbta.com/vehicles?api_key=172ad98635c0434da2487ac7bf45418c&filter[route]=1';
 
-const stopaddress =
-	'https://api-v3.mbta.com/stops?api_key=172ad98635c0434da2487ac7bf45418c&filter[route]=1';
+const busesLoaction = `https://api-v3.mbta.com/vehicles?api_key=172ad98635c0434da2487ac7bf45418c&filter[route]=1`;
+
+const stopaddress = `https://api-v3.mbta.com/stops?api_key=172ad98635c0434da2487ac7bf45418c&filter[route]=1`;
 
 mapboxgl.accessToken =
 	'pk.eyJ1Ijoic29mdGV4cGVyaW1lbnQiLCJhIjoiY2tjMngyZm9rMDFvajJzczJ3aWo0bnh6aiJ9.Bc_qK9Xf8SFBXkFM_x2gpg';
+
 let busList = [];
 let markers = [];
 let buses = [];
@@ -35,7 +35,7 @@ function init() {
 	// track buses
 	trackBuses();
 	// Track buses every 5 seconds
-	setInterval(trackBuses, 10000);
+	setInterval(trackBuses, 5000);
 }
 
 //Functions used after init
