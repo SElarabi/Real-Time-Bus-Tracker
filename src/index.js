@@ -23,6 +23,7 @@ const map = new mapboxgl.Map({
 
 //initialize the map
 function init() {
+	console.log('APP STARTING');
 	// Create marker  MIT location
 	const marker = new mapboxgl.Marker({
 		color: '#FF3F',
